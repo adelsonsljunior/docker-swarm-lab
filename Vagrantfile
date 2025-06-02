@@ -15,8 +15,13 @@ Vagrant.configure('2') do |config|
     end
 
     vb.vm.provision 'shell', path: 'scripts/manager.sh'
-    vb.vm.provision 'shell', path: 'scripts/portainer.sh'
     vb.vm.provision 'shell', path: 'scripts/swarmpit.sh'
+
+    # Script final que só será executado manualmente
+    vb.vm.provision 'shell',
+                    path: 'scripts/portainer.sh',
+                    run: 'never',
+                    name: 'final-config'
   end
 
   (1..WORKERS).each do |i|
@@ -31,6 +36,11 @@ Vagrant.configure('2') do |config|
       end
 
       vb.vm.provision 'shell', path: 'scripts/worker.sh'
+    end
+
+    config.trigger.after :up do |trigger|
+      trigger.only_on = "worker#{WORKERS}" # Só dispara no último worker
+      trigger.run = { inline: "vagrant ssh manager -c 'bash /vagrant/scripts/portainer.sh'" }
     end
   end
 end
