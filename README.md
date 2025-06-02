@@ -7,5 +7,7 @@ vagrant up
 
 ## Default stacks
 
-+ Portainer 
-+ Swarmpit
+stack|address|
+---|---|
+Portainer|192.168.56.10:9000|
+Swarmpit|192.168.56.10:888|
