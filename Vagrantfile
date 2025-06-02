@@ -16,6 +16,7 @@ Vagrant.configure('2') do |config|
 
     vb.vm.provision 'shell', path: 'scripts/manager.sh'
     vb.vm.provision 'shell', path: 'scripts/portainer.sh'
+    vb.vm.provision 'shell', path: 'scripts/swarmpit.sh'
   end
 
   (1..WORKERS).each do |i|
