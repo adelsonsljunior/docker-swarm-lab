@@ -22,6 +22,7 @@ Vagrant.configure('2') do |config|
   (1..WORKERS).each do |i|
     config.vm.define "worker#{i}" do |vb|
       vb.vm.box = 'ubuntu/jammy64'
+      vb.vm.hostname = "worker#{i}"
       vb.vm.network 'private_network', ip: "192.168.56.2#{i}"
 
       vb.vm.provider 'virtualbox' do |v|
