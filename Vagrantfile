@@ -11,7 +11,7 @@ Vagrant.configure('2') do |config|
 
     vb.vm.provider 'virtualbox' do |v|
       v.memory = 2048
-      v.cpus = 1
+      v.cpus = 2
     end
 
     vb.vm.provision 'shell', path: 'scripts/manager.sh'
