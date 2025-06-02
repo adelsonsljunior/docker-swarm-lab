@@ -5,7 +5,7 @@ VMs up
 vagrant up
 ~~~
 
-> ## Default stacks
+## Default stacks
 
 + Portainer 
 + Swarmpit
